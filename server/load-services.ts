@@ -1,9 +1,9 @@
-import { Parties } from '../collections/parties.ts';
+import { Services } from '../collections/services.ts';
 
-export function loadParties() {
-  if (Parties.find().count() === 0) {
+export function loadServices() {
+  if (Services.find().count() === 0) {
 
-    var parties = [
+    var services = [
       {
         'name': 'Dubstep-Free Zone',
         'description': 'Can we please just for an evening not listen to dubstep.',
@@ -24,8 +24,8 @@ export function loadParties() {
       }
     ];
 
-    for (var i = 0; i < parties.length; i++) {
-      Parties.insert(parties[i]);
+    for (var i = 0; i < services.length; i++) {
+      Services.insert(services[i]);
     }
   }
 }

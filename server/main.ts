@@ -1,5 +1,5 @@
-import {loadParties} from './load-parties.ts';
+import {loadServices} from './load-services.ts';
 import {Meteor} from 'meteor/meteor';
-import './parties.ts';
+import './services.ts';
 
-Meteor.startup(loadParties);
+Meteor.startup(loadServices);

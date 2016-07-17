@@ -1,0 +1,13 @@
+<form (submit)="saveService(service)" *ngIf="service">
+  <label>Name</label>
+  <input type="text" [(ngModel)]="service.name">
+
+  <label>Description</label>
+  <input type="text" [(ngModel)]="service.description">
+
+  <label>Location</label>
+  <input type="text" [(ngModel)]="service.location">
+
+  <button type="submit">Save</button>
+  <button [routerLink]="['/']">Cancel</button>
+</form>

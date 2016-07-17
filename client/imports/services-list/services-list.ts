@@ -1,6 +1,6 @@
 import { Component }   from '@angular/core';
-import { Parties }     from '../../../collections/parties';
-import { PartiesForm } from '../parties-form/parties-form';
+import { Services }     from '../../../collections/services';
+import { ServicesForm } from '../services-form/services-form';
 import { Mongo }       from 'meteor/mongo';
 import { ROUTER_DIRECTIVES }  from '@angular/router';
 import { LoginButtons } from 'angular2-meteor-accounts-ui';
@@ -9,21 +9,21 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 import { PaginationService, PaginatePipe, PaginationControlsCmp } from 'angular2-pagination';
 
-import template from './parties-list.html';
+import template from './services-list.html';
 
 @Component({
-  selector: 'parties-list',
+  selector: 'services-list',
   viewProviders: [PaginationService],
   template,
-  directives: [PartiesForm, ROUTER_DIRECTIVES, LoginButtons, PaginationControlsCmp],
+  directives: [ServicesForm, ROUTER_DIRECTIVES, LoginButtons, PaginationControlsCmp],
   pipes: [PaginatePipe]
 })
-export class PartiesList extends MeteorComponent{
-  parties: Mongo.Cursor<Party>;
+export class ServicesList extends MeteorComponent{
+  services: Mongo.Cursor<Service>;
   pageSize: number = 10;
   curPage: ReactiveVar<number> = new ReactiveVar<number>(1);
   nameOrder: ReactiveVar<number> = new ReactiveVar<number>(1);
-  partiesSize: number = 0;
+  servicesSize: number = 0;
   location: ReactiveVar<string> = new ReactiveVar<string>(null);
 
   constructor() {
@@ -36,18 +36,18 @@ export class PartiesList extends MeteorComponent{
         sort: { name: this.nameOrder.get() }
       };
 
-      this.subscribe('parties', options, this.location.get(), () => {
-        this.parties = Parties.find({}, { sort: { name: this.nameOrder.get() } });
+      this.subscribe('services', options, this.location.get(), () => {
+        this.services = Services.find({}, { sort: { name: this.nameOrder.get() } });
       }, true);
     });
 
     this.autorun(() => {
-      this.partiesSize = Counts.get('numberOfParties');
+      this.servicesSize = Counts.get('numberOfServices');
     }, true);
   }
 
-  removeParty(party) {
-    Parties.remove(party._id);
+  removeService(service) {
+    Services.remove(service._id);
   }
 
   search(value: string) {

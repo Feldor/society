@@ -1,9 +1,9 @@
 import {Mongo} from 'meteor/mongo';
 import {Meteor} from 'meteor/meteor';
 
-export let Parties = new Mongo.Collection<Party>('parties');
+export let Services = new Mongo.Collection<Service>('services');
 
-Parties.allow({
+Services.allow({
   insert: function() {
     let user = Meteor.user();
     

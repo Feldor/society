@@ -1,9 +1,9 @@
 <div>
-  <parties-form style="float: left"></parties-form>
+  <services-form style="float: left"></services-form>
   <input type="text" #searchtext placeholder="Search by Location">
   <button type="button" (click)="search(searchtext.value)">Search</button>
   <login-buttons></login-buttons>
-  <h1>Parties:</h1>
+  <h1>Services:</h1>
   <div>
     <select #sort (change)="changeSortOrder(sort.value)">
       <option value="1" selected>Ascending</option>
@@ -11,11 +11,11 @@
     </select>
   </div>
   <ul>
-    <li *ngFor="let party of parties | paginate:{currentPage: 1, itemsPerPage: pageSize, totalItems: partiesSize}">
-      <a [routerLink]="['/party', party._id]">{{party.name}}</a>
-      <p>{{party.description}}</p>
-      <p>{{party.location}}</p>
-      <button (click)="removeParty(party)">X</button>
+    <li *ngFor="let service of services | paginate:{currentPage: 1, itemsPerPage: pageSize, totalItems: servicesSize}">
+      <a [routerLink]="['/service', service._id]">{{service.name}}</a>
+      <p>{{service.description}}</p>
+      <p>{{service.location}}</p>
+      <button (click)="removeService(service)">X</button>
     </li>
   </ul>
   <pagination-controls (change)="onPageChanged($event.page)"></pagination-controls>

@@ -3,8 +3,8 @@ import { Component, provide } from '@angular/core';
 import { bootstrap } from 'angular2-meteor-auto-bootstrap';
 import { provideRouter, RouterConfig, ROUTER_DIRECTIVES } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
-import { PartiesList } from './imports/parties-list/parties-list.ts';
-import { PartyDetails } from './imports/party-details/party-details.ts';
+import { ServicesList } from './imports/services-list/services-list.ts';
+import { ServiceDetails } from './imports/service-details/service-details.ts';
 
 import template from './app.html';
 
@@ -16,8 +16,8 @@ import template from './app.html';
 class Socially {}
 
 const routes: RouterConfig = [
-  { path: '',              	component: PartiesList },
-  { path: 'party/:partyId',	component: PartyDetails },
+  { path: '',              	component: ServicesList },
+  { path: 'service/:serviceId',	component: ServiceDetails },
 ];
 
 const APP_ROUTER_PROVIDERS = [
