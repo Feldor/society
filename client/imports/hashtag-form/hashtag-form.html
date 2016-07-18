@@ -1,0 +1,5 @@
+<form [ngFormModel]="hashtagForm" #f="ngForm" (submit)="addHashTag(f.value)">
+  <label>Name</label>
+  <input type="text" ngControl="name">
+  <button>Add</button>
+</form>

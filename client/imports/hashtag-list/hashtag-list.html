@@ -1,0 +1,11 @@
+<div>
+  <input type="text" #searchtext placeholder="Search by HashTags">
+  <button type="button" (click)="search(searchtext.value)">Search</button>
+  <h1>HashTag:</h1>
+  <ul>
+    <li *ngFor="let hashtag of hashtags">
+      <p>{{hashtag.name}}</p>
+      <button (click)="removeHashTag(hashtag)">X</button>
+    </li>
+  </ul>
+</div>

@@ -5,8 +5,9 @@ import { provideRouter, RouterConfig, ROUTER_DIRECTIVES } from '@angular/router'
 import { APP_BASE_HREF } from '@angular/common';
 import { ServicesList } from './imports/services-list/services-list.ts';
 import { ServiceDetails } from './imports/service-details/service-details.ts';
+import { AdminDashboard } from './imports/admin-dashboard/admin-dashboard.ts';
 
-import template from './app.html';
+import template from "./app.html"
 
 @Component({
   selector: 'app',
@@ -16,8 +17,9 @@ import template from './app.html';
 class Socially {}
 
 const routes: RouterConfig = [
-  { path: '',              	component: ServicesList },
+  { path: '',              		component: ServicesList },
   { path: 'service/:serviceId',	component: ServiceDetails },
+  { path: 'admin',				component: AdminDashboard }
 ];
 
 const APP_ROUTER_PROVIDERS = [
