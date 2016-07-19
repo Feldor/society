@@ -1,0 +1,16 @@
+<div>
+  <input type="text" id="autocompleteTags" #searchtext placeholder="Search by HashTags" (input)="search(searchtext.value)" (keypress)="addTagToList($event)">
+  <span *ngIf="errorTags">Tags Repetido</span>
+  <h1 >HashTag:</h1>
+  <ul>
+    <li *ngFor="let hashtag of hashtags">
+      <p>{{hashtag.name}}</p>
+    </li>
+  </ul>
+  <h1 >HashTag Selected:</h1>
+  <ul>
+    <li *ngFor="let select of hashTagsSelected">
+      <p>{{select}}</p><button (click)="removeSelected(select)">X</button>
+    </li>
+  </ul>
+</div>

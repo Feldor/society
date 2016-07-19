@@ -6,6 +6,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { ServicesList } from './imports/services-list/services-list.ts';
 import { ServiceDetails } from './imports/service-details/service-details.ts';
 import { AdminDashboard } from './imports/admin-dashboard/admin-dashboard.ts';
+import { HashTagAutocomplete } from './imports/hashtag-autocomplete/hashtag-autocomplete.ts';
 
 import template from "./app.html"
 
@@ -19,7 +20,8 @@ class Socially {}
 const routes: RouterConfig = [
   { path: '',              		component: ServicesList },
   { path: 'service/:serviceId',	component: ServiceDetails },
-  { path: 'admin',				component: AdminDashboard }
+  { path: 'admin',				component: AdminDashboard },
+  { path: 'autocomplete',		component: HashTagAutocomplete }
 ];
 
 const APP_ROUTER_PROVIDERS = [
