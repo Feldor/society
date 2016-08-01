@@ -1,3 +1,5 @@
+<hashtag-autocomplete (hashTagsSelectedSent)="getHashTags($event);"></hashtag-autocomplete>
+
 <form [ngFormModel]="servicesForm" #f="ngForm" (submit)="addService(f.value)">
   <label>Name</label>
   <input type="text" ngControl="name">
@@ -9,3 +11,4 @@
   <label>Public</label>
   <input type="checkbox" ngControl="public">
 </form>
+<button (click)="callOtherClass()">Call Other</button>

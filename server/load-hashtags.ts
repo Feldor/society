@@ -8,10 +8,34 @@ export function loadHahsTags() {
         'name': 'test1'
       },
       {
-        'name': 'test1'
+        'name': 'informatica'
       },
       {
-        'name': 'test1'
+        'name': 'idioma'
+      },
+      {
+        'name': 'musica'
+      },
+      {
+        'name': 'coche'
+      },
+      {
+        'name': 'clases'
+      },
+      {
+        'name': 'matematicas'
+      },
+      {
+        'name': 'lengua'
+      },
+      {
+        'name': 'ingles'
+      },
+      {
+        'name': 'frances'
+      },
+      {
+        'name': 'italiano'
       }
     ];
 

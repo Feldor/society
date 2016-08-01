@@ -4,17 +4,12 @@
   <button type="button" (click)="search(searchtext.value)">Search</button>
   <login-buttons></login-buttons>
   <h1>Services:</h1>
-  <div>
-    <select #sort (change)="changeSortOrder(sort.value)">
-      <option value="1" selected>Ascending</option>
-      <option value="-1">Descending</option>
-    </select>
-  </div>
   <ul>
     <li *ngFor="let service of services | paginate:{currentPage: 1, itemsPerPage: pageSize, totalItems: servicesSize}">
       <a [routerLink]="['/service', service._id]">{{service.name}}</a>
       <p>{{service.description}}</p>
       <p>{{service.location}}</p>
+      <p *ngFor="let tag of service.tags"> {{tag}}</p>
       <button (click)="removeService(service)">X</button>
     </li>
   </ul>

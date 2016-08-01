@@ -5,4 +5,5 @@ interface Service {
   location: string;
   owner?: string;
   public: boolean;
+  tags: Array<string>;
 }
