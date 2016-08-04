@@ -21,7 +21,7 @@ import template from './services-form.html';
 export class ServicesForm extends MeteorComponent
 {
   servicesForm: ControlGroup;
-  hashtagsSelectedObject: Array<string>;
+  hashtagsSelectedObject: Array<HashTag> = [];
 
 
   constructor() 
@@ -31,32 +31,37 @@ export class ServicesForm extends MeteorComponent
     let fb = new FormBuilder();
 
     this.servicesForm = fb.group({
-      name: ['', Validators.required],
+      price: [''],
       description: [''],
-      location: ['', Validators.required],
-      'public': [false],
+      type: [''],
       tags: ['']
     });
   }
   addService(service) 
   {
+    debugger;
     if (this.servicesForm.valid) {
       if (Meteor.userId()) {
+        //var date = this.getDateNow();
         Services.insert(<Service>{
-          name: service.name,
+          price: service.price,
           description: service.description,
-          location: service.location,
-          'public': service.public,
+          type: service.type,
+          done: false,
           owner: Meteor.userId(),
-          tags: this.hashtagsSelectedObject
+          tags: this.hashtagsSelectedObject,
+          dateCreated: null,
+          consumer: null,
+          dateRequest: null,
+          dateDone: null,
+          transfer: null
         });
         console.log("Entro en addservice");
 
-        (<Control>this.servicesForm.controls['name']).updateValue('');
         (<Control>this.servicesForm.controls['description']).updateValue('');
-        (<Control>this.servicesForm.controls['location']).updateValue('');
-        (<Control>this.servicesForm.controls['public']).updateValue(false);
+        (<Control>this.servicesForm.controls['type']).updateValue('');
         (<Control>this.servicesForm.controls['tags']).updateValue('');
+        (<Control>this.servicesForm.controls['price']).updateValue('');
       } else {
         alert('Please log in to add a service');
       }
@@ -67,7 +72,17 @@ export class ServicesForm extends MeteorComponent
     console.log("Entro in callOtherClass()");
     console.log(this.hashtagsSelectedObject);
   }
-  getHashTags(hashTag) {
+  getHashTags(hashTag) 
+  {
     this.hashtagsSelectedObject = hashTag;
+  }
+  getDateNow()
+  {  
+    var today = new Date();
+    var day = today.getDate();
+    var month = today.getMonth()+1; //January is 0!
+    var year = today.getFullYear();
+    var time = today.getTime();
+    return {'day' : day , 'month' : month , 'year' : year , 'time' : time};
   }
 }

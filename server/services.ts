@@ -5,7 +5,6 @@ import {Counts} from 'meteor/tmeasday:publish-counts';
 function buildQuery(serviceId: string, location: string): Object {
   var isAvailable = {
     $or: [
-      { public: true },
       {
         $and: [
           { owner: this.userId },
@@ -19,9 +18,10 @@ function buildQuery(serviceId: string, location: string): Object {
     return { $and: [{ _id: serviceId }, isAvailable] };
   }
 
-  let searchRegEx = { '$regex': '.*' + (location || '') + '.*', '$options': 'i' };
+  //let searchRegEx = { '$regex': '.*' + (location || '') + '.*', '$options': 'i' };
 
-  return { $and: [{ location: searchRegEx }, isAvailable] };
+  //return { $and: [{ location: searchRegEx }, isAvailable] };
+  return { $and: [isAvailable] };
 }
 
 Meteor.publish('services', function(options: Object, location: string) {

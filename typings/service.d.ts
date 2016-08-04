@@ -1,9 +1,14 @@
 interface Service {
   _id?: string;
-  name: string;
+  tags: Array<HashTag>;
   description?: string;
-  location: string;
+  price: number;
+  type: boolean;
   owner?: string;
-  public: boolean;
-  tags: Array<string>;
+  consumer: string;
+  dateCreated: Date;
+  dateRequest: Date;
+  dateDone: Date;
+  done: boolean;
+  transfer: Transfer;
 }

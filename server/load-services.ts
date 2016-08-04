@@ -5,24 +5,21 @@ export function loadServices() {
 
     var services = [
       {
-        'name': 'Dubstep-Free Zone',
         'description': 'Can we please just for an evening not listen to dubstep.',
-        'location': 'Palo Alto',
-        'public': true,
+        'done': false,
+        'type': true,
         'tags': []
       },
       {
-        'name': 'All dubstep all the time',
         'description': 'Get it on!',
-        'location': 'Palo Alto',
-        'public': true,
+        'done': false,
+        'type': true,
         'tags': []
       },
       {
-        'name': 'Savage lounging',
         'description': 'Leisure suit required. And only fiercest manners.',
-        'location': 'San Francisco',
-        'public': false,
+        'done': false,
+        'type': false,
         'tags': []
       }
     ];

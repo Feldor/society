@@ -16,9 +16,9 @@ import template from './hashtag-autocomplete.html';
 export class HashTagAutocomplete extends MeteorComponent
 {
   hashtags: Mongo.Cursor<HashTag>;
-  hashtagsSelectedObject: Array<HashTag>;
   name: ReactiveVar<string> = new ReactiveVar<string>(null);
-  hashTagsSelected = [];
+  hashTagsSelected: Array<string> = [];
+  hashtagsSelectedObject: Array<HashTag> = [];
   countSelected: number;
   errorTags: boolean = false;
   @Output() hashTagsSelectedSent: EventEmitter< Array<HashTag> > = new EventEmitter< Array<HashTag> >();
@@ -62,9 +62,8 @@ export class HashTagAutocomplete extends MeteorComponent
         if(!exist)
         {
           this.hashTagsSelected.push(elements[0]._id);
-          //debugger;
-          //this.hashtagsSelectedObject.push = HashTags.findOne({_id : elements[0]._id});
-          this.hashTagsSelectedSent.emit(this.hashTagsSelected);
+          this.hashtagsSelectedObject = HashTags.find({_id : {$in : this.hashTagsSelected}}).fetch();
+          this.hashTagsSelectedSent.emit(this.hashtagsSelectedObject);
         }
         else
           this.errorTags = true;
@@ -87,9 +86,10 @@ export class HashTagAutocomplete extends MeteorComponent
       }
     }
     this.hashTagsSelected = copyArray;
-    //this.hashtagsSelectedObject = HashTags.find({name : {'$in': this.hashTagsSelected}});
+    this.hashtagsSelectedObject = HashTags.find({_id : {$in : this.hashTagsSelected}}).fetch();
     this.hashTagsSelectedSent.emit(this.hashtagsSelectedObject);
   }
+  
   getHashTags() 
   {
     this.sendConsole();

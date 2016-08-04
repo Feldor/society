@@ -9,8 +9,8 @@
   </ul>
   <h1 >HashTag Selected:</h1>
   <ul>
-    <li *ngFor="let select of hashTagsSelected">
-      <p>{{select}}</p><button (click)="removeSelected(select)">X</button>
+    <li *ngFor="let select of hashtagsSelectedObject">
+      <p>{{select.name}}</p><button (click)="removeSelected(select.name)">X</button>
     </li>
   </ul>
 </div>

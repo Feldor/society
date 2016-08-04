@@ -1,14 +1,15 @@
-<hashtag-autocomplete (hashTagsSelectedSent)="getHashTags($event);"></hashtag-autocomplete>
+<div>  
+  <hashtag-autocomplete (hashTagsSelectedSent)="getHashTags($event);"></hashtag-autocomplete>
 
-<form [ngFormModel]="servicesForm" #f="ngForm" (submit)="addService(f.value)">
-  <label>Name</label>
-  <input type="text" ngControl="name">
-  <label>Description</label>
-  <input type="text" ngControl="description">
-  <label>Location</label>
-  <input type="text" ngControl="location">
-  <button>Add</button>
-  <label>Public</label>
-  <input type="checkbox" ngControl="public">
-</form>
-<button (click)="callOtherClass()">Call Other</button>
+  <form [ngFormModel]="servicesForm" #f="ngForm" (submit)="addService(f.value)">
+
+    <label>Price</label>
+    <input type="text" ngControl="price">
+    <label>Description</label>
+    <textarea ngControl="description"> </textarea> 
+    <label>Demanda</label>
+    <input type="checkbox" ngControl="type">
+    <button>Add</button>
+    
+  </form>
+</div>
