@@ -2,7 +2,7 @@
   <services-form style="float: left"></services-form>
   <input type="text" #searchtext placeholder="Search by Location">
   <button type="button" (click)="search(searchtext.value)">Search</button>
-  <login-buttons></login-buttons>
+  
   <h1>Services:</h1>
   <ul>
     <li *ngFor="let service of services | paginate:{currentPage: 1, itemsPerPage: pageSize, totalItems: servicesSize}">

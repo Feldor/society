@@ -7,15 +7,32 @@ import { ServicesList } from './imports/services-list/services-list.ts';
 import { ServiceDetails } from './imports/service-details/service-details.ts';
 import { AdminDashboard } from './imports/admin-dashboard/admin-dashboard.ts';
 import { HashTagAutocomplete } from './imports/hashtag-autocomplete/hashtag-autocomplete.ts';
+import { MeteorComponent } from 'angular2-meteor';
+import { LoginButtons, InjectUser } from 'angular2-meteor-accounts-ui';
+import { Meteor } from 'meteor/meteor';
 
 import template from "./app.html"
 
 @Component({
   selector: 'app',
   template,
-  directives: [ROUTER_DIRECTIVES]
+  directives: [ROUTER_DIRECTIVES, LoginButtons]
 })
-class Socially {}
+
+@InjectUser()
+class Society extends MeteorComponent {
+  user: Meteor.User;
+
+  constructor() {
+    super();
+  }
+
+  logout() {
+    this.autorun(() => {
+      Meteor.logout();
+    });
+  }
+}
 
 const routes: RouterConfig = [
   { path: '',              		component: ServicesList },
@@ -28,4 +45,4 @@ const APP_ROUTER_PROVIDERS = [
   provideRouter(routes)
 ];
 
-bootstrap(Socially, [APP_ROUTER_PROVIDERS, provide(APP_BASE_HREF, { useValue: '/' })]);
+bootstrap(Society, [APP_ROUTER_PROVIDERS, provide(APP_BASE_HREF, { useValue: '/' })]);

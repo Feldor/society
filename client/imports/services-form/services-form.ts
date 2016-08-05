@@ -39,7 +39,6 @@ export class ServicesForm extends MeteorComponent
   }
   addService(service) 
   {
-    debugger;
     if (this.servicesForm.valid) {
       if (Meteor.userId()) {
         //var date = this.getDateNow();
@@ -56,7 +55,6 @@ export class ServicesForm extends MeteorComponent
           dateDone: null,
           transfer: null
         });
-        console.log("Entro en addservice");
 
         (<Control>this.servicesForm.controls['description']).updateValue('');
         (<Control>this.servicesForm.controls['type']).updateValue('');

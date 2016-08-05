@@ -1,0 +1,48 @@
+.autocompleteBox{
+    border-radius: 2px;
+    border: 1px solid #CCC;
+    width: 173px;
+    margin-top: -2px;
+    z-index: 9999;
+}
+
+/*.autocompleteBox > div:first-of-type{
+	background-color: #93304b;
+	color:#fce9bf;
+}*/
+
+.autocompleteBoxElement:hover{
+	background-color: #93304b;
+	color:#fce9bf;
+	cursor:pointer;
+}
+
+.autocompleteBoxElement{
+	padding:4px;
+}
+
+.autocompleteContent{
+
+}
+
+.autocompleteSelector{
+
+}
+.autocompleteSelection{
+
+}
+.autocompleteSelectionElement{
+	float: left;
+	padding: 5px;
+    background: #fce9bf;
+    color: #93304b;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+.deleteTag{
+	float: right;
+    margin-top: -30px;
+    margin-right: -5px;
+    cursor: pointer;
+    font-size: xx-small;
+}

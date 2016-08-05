@@ -1,16 +1,15 @@
-<div>
-  <input type="text" id="autocompleteTags" #searchtext placeholder="Search by HashTags" (input)="search(searchtext.value)" (keypress)="addTagToList($event)">
-  <span *ngIf="errorTags">Tags Repetido</span>
-  <h1 >HashTag:</h1>
-  <ul>
-    <li *ngFor="let hashtag of hashtags">
-      <p>{{hashtag.name}}</p>
-    </li>
-  </ul>
-  <h1 >HashTag Selected:</h1>
-  <ul>
-    <li *ngFor="let select of hashtagsSelectedObject">
-      <p>{{select.name}}</p><button (click)="removeSelected(select.name)">X</button>
-    </li>
-  </ul>
+<div class="autocompleteContent row">
+  <div class="autocompleteSelector col-md-4">
+    <input type="text" id="autocompleteTags" #searchtext placeholder="Search by HashTags" (input)="search(searchtext.value)" (keypress)="addTagToList($event)">
+    <div class="autocompleteBox" *ngIf="hashtags">
+      <div class="autocompleteBoxElement" *ngFor="let hashtag of hashtags" (click)="addTagToListClick(hashtag.name)">
+        {{hashtag.name}}
+      </div>
+    </div> 
+  </div>
+  <div class="autocompleteSelection col-md-8">
+    <div class="autocompleteSelectionElement" *ngFor="let select of hashtagsSelectedObject">
+      {{select.name}} <span (click)="removeSelected(select.name)" class="deleteTag glyphicon glyphicon-remove" ></span>
+    </div>
+  </div>
 </div>
