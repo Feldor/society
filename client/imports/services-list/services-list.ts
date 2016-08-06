@@ -3,63 +3,49 @@ import { Services }     from '../../../collections/services';
 import { ServicesForm } from '../services-form/services-form';
 import { Mongo }       from 'meteor/mongo';
 import { ROUTER_DIRECTIVES }  from '@angular/router';
-import { LoginButtons } from 'angular2-meteor-accounts-ui';
 import { MeteorComponent } from 'angular2-meteor';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Counts } from 'meteor/tmeasday:publish-counts';
-import { PaginationService, PaginatePipe, PaginationControlsCmp } from 'angular2-pagination';
+import { HashTagAutocomplete }     from '../hashtag-autocomplete/hashtag-autocomplete';
 
 import template from './services-list.html';
 
 @Component({
   selector: 'services-list',
-  viewProviders: [PaginationService],
   template,
-  directives: [ServicesForm, ROUTER_DIRECTIVES, LoginButtons, PaginationControlsCmp],
-  pipes: [PaginatePipe]
+  directives: [HashTagAutocomplete, ServicesForm, ROUTER_DIRECTIVES]
 })
 export class ServicesList extends MeteorComponent{
   services: Mongo.Cursor<Service>;
-  pageSize: number = 10;
-  curPage: ReactiveVar<number> = new ReactiveVar<number>(1);
-  nameOrder: ReactiveVar<number> = new ReactiveVar<number>(1);
-  servicesSize: number = 0;
-  location: ReactiveVar<string> = new ReactiveVar<string>(null);
+  hashtagsSelectedObject: Array<HashTag> = [];
+  countHashTag: number = 0;
 
   constructor() {
     super();
 
     this.autorun(() => {
-      let options = {
+      /*let options = {
         limit: this.pageSize,
         skip: (this.curPage.get() - 1) * this.pageSize,
         sort: { name: this.nameOrder.get() }
-      };
+      };*/
 
-      this.subscribe('services', options, this.location.get(), () => {
-        this.services = Services.find({}, { sort: { name: this.nameOrder.get() } });
+      this.subscribe('services', () => {
+        this.services = Services.find();
       }, true);
     });
-
-    this.autorun(() => {
-      this.servicesSize = Counts.get('numberOfServices');
-    }, true);
   }
 
   removeService(service) {
     Services.remove(service._id);
   }
 
-  search(value: string) {
-    this.curPage.set(1);
-    this.location.set(value);
+  consoleLog(value)
+  {
+    console.log(value);
   }
-
-  changeSortOrder(nameOrder: string) {
-    this.nameOrder.set(parseInt(nameOrder));
-  }
-
-  onPageChanged(page: number) {
-    this.curPage.set(page);
+  getHashTags(hashTag) 
+  {
+    this.hashtagsSelectedObject = hashTag;
   }
 }

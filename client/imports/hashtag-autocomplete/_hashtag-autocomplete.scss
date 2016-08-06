@@ -11,11 +11,12 @@
 	color:#fce9bf;
 }*/
 
-.autocompleteBoxElement:hover{
+.autocompleteBoxElement:hover, .hoverElementSelectedBox{
 	background-color: #93304b;
 	color:#fce9bf;
 	cursor:pointer;
 }
+
 
 .autocompleteBoxElement{
 	padding:4px;

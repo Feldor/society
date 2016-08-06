@@ -1,8 +1,8 @@
 <div class="autocompleteContent row">
   <div class="autocompleteSelector col-md-4">
-    <input type="text" id="autocompleteTags" #searchtext placeholder="Search by HashTags" (input)="search(searchtext.value)" (keypress)="addTagToList($event)">
+    <input type="text" id="autocompleteTags" #searchtext placeholder="Search by HashTags" (input)="search(searchtext.value)" (keypress)="addTagToList($event)" (keyup)="arrowSelectedElement($event)">
     <div class="autocompleteBox" *ngIf="hashtags">
-      <div class="autocompleteBoxElement" *ngFor="let hashtag of hashtags" (click)="addTagToListClick(hashtag.name)">
+      <div class="autocompleteBoxElement selectedBoxElement-{{hashtag._id}}" *ngFor="let hashtag of hashtags" (click)="addTagToListClick(hashtag.name)">
         {{hashtag.name}}
       </div>
     </div> 

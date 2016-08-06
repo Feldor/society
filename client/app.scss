@@ -33,6 +33,10 @@ body{
 	background-color: #fff;
     margin-right: auto;
     margin-left: auto;
+    padding-top: 2%;
 }
+html,body { height:100%; }
+
 
 @import "./imports/hashtag-autocomplete/hashtag-autocomplete";
+@import "./imports/services-list/services-list";
