@@ -3,7 +3,7 @@ interface Service {
   tags: Array<HashTag>;
   description?: string;
   price: number;
-  type: boolean;
+  type: number;
   owner?: string;
   consumer: string;
   dateCreated: Date;

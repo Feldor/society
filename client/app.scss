@@ -29,14 +29,17 @@ body{
 
 .mainContainer{
 	width: 90%;
-	height: 80%;
+	height: 100%;
 	background-color: #fff;
     margin-right: auto;
     margin-left: auto;
     padding-top: 2%;
 }
-html,body { height:100%; }
+html,body {     
+	min-width: 100%;
+}
 
 
 @import "./imports/hashtag-autocomplete/hashtag-autocomplete";
 @import "./imports/services-list/services-list";
+@import "./imports/services-form/services-form";

@@ -31,7 +31,27 @@ export class ServiceDetails extends MeteorComponent {
     });
   }
 
-  saveService(service) {
+  openService(serviceID)
+  {
+    this.serviceId = serviceID;
+    this.service = Services.findOne(this.serviceId);
+
+    $(".searchTitleHeader").hide();
+    $(".searchContent").hide();
+    $(".foundTitle").show();
+    $(".foundContent").show();
+  }
+
+  closeService()
+  {
+    $(".foundTitle").hide();
+    $(".foundContent").hide();
+    $(".searchTitleHeader").show();
+    $(".searchContent").show();    
+  }
+
+  saveService(service) 
+  {
     if (Meteor.userId()) {
       Services.update(service._id, {
         $set: {
@@ -44,4 +64,5 @@ export class ServiceDetails extends MeteorComponent {
       alert('Please log in to change this service');
     }
   }
+  
 }

@@ -1,38 +1,48 @@
 <div class="searchService row">
   <div class="searchBox col-md-6">
     <div class="searchHeader">
-      <h1>Busca:</h1>
-      <h4>Configura tu criterio de búsqueda</h4>
+      <h1 class="searchTitleHeader">Busca:</h1>
+      <h4 class="searchTitleHeader">Configura tu criterio de búsqueda</h4>
+      <h1 class="foundTitle">Encontrado:</h1>
+      <h4 class="foundTitle">Consulta y Participa</h4>
     </div>
-    <span class="searchTitle">Tipo</span>
-    <div class="typeRange">
-      <div id="row"> 
-        <div class="typeRangeLeft col-md-4">Demanda</div> 
-        <div class="typeRangeCenter col-md-4">Todo</div> 
-        <div class="typeRangeRight col-md-4">Oferta</div> 
+    <div class="searchContent">
+      <span class="searchTitle">Tipo</span>
+      <div class="typeRange">
+        <div id="row"> 
+          <div class="typeRangeLeft col-md-4">Demanda</div> 
+          <div class="typeRangeCenter col-md-4">Todo</div> 
+          <div class="typeRangeRight col-md-4">Oferta</div> 
+        </div>
+        <input class="bar" type="range" id="typeRangeInput" min="1" max="3" step="1" (change) = "changeListService()"/>
       </div>
-      <input class="bar" type="range" id="typeRangeInput" min="1" max="3" step="1"/>
-    </div>
-    <span class="searchTitle">Precio</span>
-    <div class="priceRange">
-      <div id="row">
-        <div class="priceRange1 col-md-1">1/2</div> 
-        <div class="priceRange2 col-md-1">1h</div> 
-        <div class="priceRange3 col-md-1">1h 1/2</div>
-        <div class="priceRange1 col-md-1">2h</div>
-        <div class="priceRange4 col-md-1">2h 1/2</div>
-        <div class="priceRange5 col-md-1">3h</div>
-        <div class="priceRange6 col-md-1">3h 1/2</div>
-        <div class="priceRange7 col-md-1">4h</div>
-        <div class="priceRange8 col-md-1">4h 1/2</div>
-        <div class="priceRange9 col-md-1">5h</div>
-        <div class="priceRange10 col-md-1">5h 1/2</div>
-        <div class="priceRange11 col-md-1">6h</div>
+      <span class="searchTitle">Precio</span>
+      <div class="priceRange">
+        <div id="row">
+          <div class="priceRange1 col-md-1">1/2</div> 
+          <div class="priceRange2 col-md-1">1h</div> 
+          <div class="priceRange3 col-md-1">1h 1/2</div>
+          <div class="priceRange1 col-md-1">2h</div>
+          <div class="priceRange4 col-md-1">2h 1/2</div>
+          <div class="priceRange5 col-md-1">3h</div>
+          <div class="priceRange6 col-md-1">3h 1/2</div>
+          <div class="priceRange7 col-md-1">4h</div>
+          <div class="priceRange8 col-md-1">4h 1/2</div>
+          <div class="priceRange9 col-md-1">5h</div>
+          <div class="priceRange10 col-md-1">5h 1/2</div>
+          <div class="priceRange11 col-md-1">6h</div>
+        </div>
+        <input class="bar" type="range" id="priceRangeInput" min="1" max="12" step="1" disabled (change) = "changeListService()"/>
+        <div class="checkBoxPriceRange">
+          <span>Todos los precios</span> 
+          <input class="checkBox" type="checkbox" id="checkBoxPrice" checked (click)="changeInputRangeDisabled()" (change) = "changeListService()"/>
+        </div>
+        
       </div>
-      <input class="bar" type="range" id="priceRangeInput" min="1" max="12" step="1" />
+      <span class="searchTitle">Palabras Clave</span> <span class="searchTitleSmall">(#tubusqueda)</span>
+      <hashtag-autocomplete class="autocompleteInput" [addExtenalHashTag]="auxElement" (hashTagsSelectedSent)="getHashTags($event);"></hashtag-autocomplete>
     </div>
-    <span class="searchTitle">Palabras Clave</span> <span class="searchTitleSmall">(#tubusqueda)</span>
-    <hashtag-autocomplete (hashTagsSelectedSent)="getHashTags($event);"></hashtag-autocomplete>
+    <service-details class="foundContent"></service-details>
   </div>
   <div class="col-md-6">
     <div class="resultHeader">
@@ -40,16 +50,26 @@
       <h4>Accede a los resultados que te interesen</h4>
     </div>
     <div class="resultContent">
-      
+      <div class="searchElement row" *ngFor="let service of services">
+        <div class="col-md-10">
+          <div class="searchTagElement row rowSearch ">
+            <div class="elementTag col-md-2" *ngFor="let tag of service.tags"> 
+              <span class="tagElementSearch" (click) = "changeServiceTag(tag.name)">{{tag.name}}</span>
+            </div>
+          </div>
+          <div class="rowSearch descriptionService">{{service.description}}</div>
+          <div class="row rowSearch">
+            <div class="col-md-4">{{service.owner | displayName}}</div>
+            <div class="col-md-4 typeElementSearch"> 
+              <span *ngIf="service.type == 1" (click) = "changeServiceType(1)">Demanda</span>
+              <span *ngIf="service.type == 2" (click) = "changeServiceType(3)">Oferta</span>
+            </div>
+            <div class="col-md-4">{{service.price}}h.</div>
+          </div>
+        </div>
+        <div class="goToServiceProfile col-md-2" (click)="openServiceDetail(service._id)" ></div>
+      </div>
     </div>
-    <ul>
-      <li *ngFor="let service of services">
-        <a [routerLink]="['/service', service._id]">{{service.type}}</a>
-        <p>{{service.description}}</p>
-        <p *ngFor="let tag of service.tags"> {{tag.name}}</p>
-        <button (click)="removeService(service)">X</button>
-      </li>
-    </ul>
   </div>
   <!--<services-form style="float: left"></services-form>-->
 </div>

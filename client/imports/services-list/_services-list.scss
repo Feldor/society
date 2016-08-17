@@ -2,11 +2,17 @@
 	
 }
 
-.searchService{
-	
+.foundTitle, .foundContent{
+	display: none;
 }
-.searchBox{
-	
+.goToServiceProfile{
+    background-color: #93304b;
+    opacity: 0.3;
+    height: 64px;
+}
+.goToServiceProfile a{
+	width: 100%;
+	height: 100%;
 }
 .searchHeader{
     padding-left: 17%;
@@ -22,7 +28,7 @@
 	font-size: 17px;
 }
 .searchContent{
-	
+	padding: 5%;
 }
 .resultHeader{
 	padding-left: 5%;
@@ -33,12 +39,15 @@
     color: #fff;
     padding-top: 10px;
     padding-bottom: 10px;
+    text-align: end;
 }
 .resultContent{
 	
 }
-.typeRange , .priceRange {
+.typeRange , .priceRange, .autocompleteInput {
 	width: 60%;
+    margin-top: 15px;
+    margin-bottom: 7px;
 }
 
 .priceRange {
@@ -96,4 +105,40 @@ input[type="range"]::-webkit-slider-thumb {
 .searchTitleSmall{
 	font-size: small;
     color: #93304b;
+}
+
+.searchElement {
+    background: #fce9bf;
+    margin-top: 13px;
+    border-radius: 15px;
+    padding: 10px;
+    color: #17a098;
+    margin-right: 5%;
+}
+
+.searchTagElement {
+    font-weight: bold;
+    font-size: large;
+
+}
+.elementTag{
+	width: initial;
+	cursor: pointer;
+}
+
+.typeElementSearch span {
+	cursor: pointer;
+}
+.rowSearch {
+    margin: 5px;
+}
+.descriptionService{
+	margin-left: 5%;
+}
+.resultContent{
+	overflow-y: scroll;
+	height: 500px;
+}
+#priceRangeInput:disabled{
+	opacity: 0.3;
 }

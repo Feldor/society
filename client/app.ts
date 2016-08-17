@@ -4,6 +4,7 @@ import { bootstrap } from 'angular2-meteor-auto-bootstrap';
 import { provideRouter, RouterConfig, ROUTER_DIRECTIVES } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { ServicesList } from './imports/services-list/services-list.ts';
+import { ServicesForm } from './imports/services-form/services-form.ts';
 import { ServiceDetails } from './imports/service-details/service-details.ts';
 import { AdminDashboard } from './imports/admin-dashboard/admin-dashboard.ts';
 import { HashTagAutocomplete } from './imports/hashtag-autocomplete/hashtag-autocomplete.ts';
@@ -38,7 +39,9 @@ const routes: RouterConfig = [
   { path: '',              		component: ServicesList },
   { path: 'service/:serviceId',	component: ServiceDetails },
   { path: 'admin',				component: AdminDashboard },
-  { path: 'autocomplete',		component: HashTagAutocomplete }
+  { path: 'autocomplete',		component: HashTagAutocomplete },
+  { path: 'addservice',    component: ServicesForm }
+  
 ];
 
 const APP_ROUTER_PROVIDERS = [

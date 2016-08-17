@@ -50,10 +50,10 @@ export class HashTagAutocomplete extends MeteorComponent
     this.hoverSelectedElement();
   }
   addTagToList(event) 
-  { 
+  {
     if(event.keyIdentifier == "Enter")
     {      
-      if(!this.empty())// esta mal
+      if(!this.empty() && this.countSelected > 0)
       {
         var elements = this.hashtags.fetch();
         this.hashTagsSelected.push(elements[this.countSelected-1]._id);
@@ -90,7 +90,6 @@ export class HashTagAutocomplete extends MeteorComponent
   }
   removeSelected(name) 
   {
-    console.log("entro en remove");
     var copyArray = [];
     var copyArray2 = [];
     for(var i = 0; i < this.hashtagsSelectedObject.length ; i++)
@@ -144,6 +143,18 @@ export class HashTagAutocomplete extends MeteorComponent
       $('.selectedBoxElement-' + elements[this.countSelected-1]._id).addClass('hoverElementSelectedBox');
     }
     
+  }
+  addExtenalHashTag(tagName)
+  {
+    console.log("Entro");
+    var hashtags = HashTags.find({name : tagName , _id : {$nin : this.hashTagsSelected}}, {sort: { name: 0 }});
+    var elements = hashtags.fetch();
+    if(elements.length > 0) 
+    {
+      this.hashTagsSelected.push(elements[0]._id);
+      this.hashtagsSelectedObject = HashTags.find({_id : {$in : this.hashTagsSelected}}).fetch();
+      this.hashTagsSelectedSent.emit(this.hashtagsSelectedObject);
+    }
   }
  
 }

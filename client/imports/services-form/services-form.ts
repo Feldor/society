@@ -31,9 +31,9 @@ export class ServicesForm extends MeteorComponent
     let fb = new FormBuilder();
 
     this.servicesForm = fb.group({
-      price: [''],
+      price: [7],
       description: [''],
-      type: [''],
+      type: [2],
       tags: ['']
     });
   }
@@ -43,9 +43,9 @@ export class ServicesForm extends MeteorComponent
       if (Meteor.userId()) {
         //var date = this.getDateNow();
         Services.insert(<Service>{
-          price: service.price,
+          price: parseInt(service.price),
           description: service.description,
-          type: service.type,
+          type: parseInt(service.type),
           done: false,
           owner: Meteor.userId(),
           tags: this.hashtagsSelectedObject,
@@ -64,11 +64,6 @@ export class ServicesForm extends MeteorComponent
         alert('Please log in to add a service');
       }
     }
-  }
-  callOtherClass()
-  {
-    console.log("Entro in callOtherClass()");
-    console.log(this.hashtagsSelectedObject);
   }
   getHashTags(hashTag) 
   {

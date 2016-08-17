@@ -1,15 +1,50 @@
-<div>  
-  <hashtag-autocomplete (hashTagsSelectedSent)="getHashTags($event);"></hashtag-autocomplete>
+<div class="servicesFormBox">  
+  <div class="serviceHeader">Añadir Servicio</div>
+  <div class="serviceFormElement">
+    <div class="serviceFormHeaderTags">Tags</div>
+    <hashtag-autocomplete class="serviceFormElementContent" (hashTagsSelectedSent)="getHashTags($event);"></hashtag-autocomplete>
+  </div>
+  <form class="serviceContent" [ngFormModel]="servicesForm" #f="ngForm" (submit)="addService(f.value)">
+    <div class="serviceFormElement">
+      <div class="serviceFormHeader" >Description</div>
+      <div class="serviceFormElementContent" >
+        <textarea class="serviceFormContent" rows="5" ngControl="description"> </textarea> 
+      </div>
+    </div>
+    <div class="serviceFormElement">
+      <div class="serviceFormHeader" >Tipo</div>
+      <div class="typeRange serviceFormElementContent">
+        <div id="row"> 
+          <div class="typeRangeLeft col-md-6">Demanda</div> 
+          <div class="typeRangeRight col-md-6">Oferta</div> 
+        </div>
+        <input class="bar" type="range" id="typeRangeInput" min="1" max="2" step="1" ngControl="type" defaultValue="1" />
+      </div>
+    </div>
+    <div class="serviceFormElement">
+      <div class="serviceFormHeader" >Precio</div>
+      <div class="priceRange serviceFormElementContent">
+        <div id="row">
+          <div class="priceRange1 col-md-1">1/2</div> 
+          <div class="priceRange2 col-md-1">1h</div> 
+          <div class="priceRange3 col-md-1">1h 1/2</div>
+          <div class="priceRange1 col-md-1">2h</div>
+          <div class="priceRange4 col-md-1">2h 1/2</div>
+          <div class="priceRange5 col-md-1">3h</div>
+          <div class="priceRange6 col-md-1">3h 1/2</div>
+          <div class="priceRange7 col-md-1">4h</div>
+          <div class="priceRange8 col-md-1">4h 1/2</div>
+          <div class="priceRange9 col-md-1">5h</div>
+          <div class="priceRange10 col-md-1">5h 1/2</div>
+          <div class="priceRange11 col-md-1">6h</div>
+        </div>
+        <input class="bar" type="range" id="priceRangeInput" min="1" max="12" step="1"  ngControl="price" defaultValue="1" />
+      </div>
+    </div>
+    
 
-  <form [ngFormModel]="servicesForm" #f="ngForm" (submit)="addService(f.value)">
-
-    <label>Price</label>
-    <input type="text" ngControl="price">
-    <label>Description</label>
-    <textarea ngControl="description"> </textarea> 
-    <label>Demanda</label>
-    <input type="checkbox" ngControl="type">
-    <button>Add</button>
+    <button class="serviceFormButton">Añadir</button>
     
   </form>
+
 </div>
