@@ -1,14 +1,82 @@
 <button (click)="closeService()"></button>
-<form (submit)="saveService(service)" *ngIf="service">
-  <label>Name</label>
-  <input type="text" [(ngModel)]="service.name">
+<div *ngIf="service" class="profileService">
+  <div class="tagsFound row" *ngFor="let tag of service.tags">
+    <div class="col-md-3">
+      <span>{{tag.name}}</span>
+    </div>
+  </div>
 
-  <label>Description</label>
-  <input type="text" [(ngModel)]="service.description">
+  <div class="descriptionFound">
+    <div class="rowSearch descriptionService">{{service.description}}</div>
+  </div>
 
-  <label>Location</label>
-  <input type="text" [(ngModel)]="service.location">
+  <div class="row">
+    <div class="col-md-4 userFound">
+      <span *ngIf="service">{{service.owner | displayName}}</span>
+    </div>
+    <div class="col-md-4 typeFound"> 
+        <span *ngIf="service.type == 1" >Demanda</span>
+        <span *ngIf="service.type == 2" >Oferta</span>
+      </div>
+    <div class="col-md-4 priceFound">
+      <span>{{service.price}}h.</span>
+    </div>
+  </div>
+</div>
+<div class="editMode">
+  <form class="serviceContent" (submit)="saveService()">
+    <div class="serviceFormElement">
+      <div class="serviceFormHeader" >Description</div>
+      <div class="serviceFormElementContent" >
+        <textarea class="serviceFormContent" rows="5" ngControl="description"> </textarea> 
+      </div>
+    </div>
+    <div class="serviceFormElement">
+      <div class="serviceFormHeader" >Tipo</div>
+      <div class="typeRange serviceFormElementContent">
+        <div id="row"> 
+          <div class="typeRangeLeft col-md-6">Demanda</div> 
+          <div class="typeRangeRight col-md-6">Oferta</div> 
+        </div>
+        <input class="bar" type="range" id="typeRangeInput" min="1" max="2" step="1" ngControl="type" defaultValue="1"  />
+      </div>
+    </div>
+    <div class="serviceFormElement">
+      <div class="serviceFormHeader" >Precio</div>
+      <div class="priceRange serviceFormElementContent">
+        <div id="row">
+          <div class="priceRange1 col-md-1">1/2</div> 
+          <div class="priceRange2 col-md-1">1h</div> 
+          <div class="priceRange3 col-md-1">1h 1/2</div>
+          <div class="priceRange1 col-md-1">2h</div>
+          <div class="priceRange4 col-md-1">2h 1/2</div>
+          <div class="priceRange5 col-md-1">3h</div>
+          <div class="priceRange6 col-md-1">3h 1/2</div>
+          <div class="priceRange7 col-md-1">4h</div>
+          <div class="priceRange8 col-md-1">4h 1/2</div>
+          <div class="priceRange9 col-md-1">5h</div>
+          <div class="priceRange10 col-md-1">5h 1/2</div>
+          <div class="priceRange11 col-md-1">6h</div>
+        </div>
+        <input class="bar" type="range" id="priceRangeInput" min="1" max="12" step="1"  ngControl="price" defaultValue="1" />
+      </div>
+    </div>
+    
 
-  <button type="submit">Save</button>
-  <button [routerLink]="['/']">Cancel</button>
-</form>
+    <button class="serviceFormButton">Añadir</button>
+    
+  </form>
+    <button (click)="editMode(false)">Cancel</button>
+  </form>
+</div>
+
+
+<div>{{countRequest}}</div>
+
+<!--<button [hidden]="!isOwner() && !hasContacted() && !isCompleted()" (click)= "addResponse()">Participa</button>
+<button [hidden]="!isOwner() && hasContacted() && !isCompleted()" (click)= "addResponse()">Eliminar Participacion</button>-->
+<button [hidden]="options.hasContacted && !options.isCompleted " (click)= "addResponse()">Participa</button>
+<button [hidden]="!options.hasContacted && !options.isCompleted " (click)= "addResponse()">Eliminar Participacion</button>
+
+<button [hidden]="" (click)= "removeService()">Eliminar</button>
+<button [hidden]="" (click)= "editMode(true)">Edit</button>

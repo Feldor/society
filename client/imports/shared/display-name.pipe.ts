@@ -17,6 +17,7 @@ export class DisplayNamePipe extends MeteorComponent{
 
   transform(userID: string): string 
   {
+    
     var user = Meteor.users.findOne(userID);
 
     if (!user) {
