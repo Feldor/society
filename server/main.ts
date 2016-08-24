@@ -1,13 +1,13 @@
-import {loadServices} from './load-services.ts';
+//import {loadServices} from './load-services.ts';
 import {loadHahsTags} from './load-hashtags.ts';
 import {Meteor} from 'meteor/meteor';
 import './services.ts';
 import './hashtags.ts';
 import { Accounts } from 'meteor/accounts-base';
-import { Roles } from 'meteor/alanning:roles';
+//import { Roles } from 'meteor/alanning:roles';
 
 
-Meteor.startup(loadServices);
+//Meteor.startup(loadServices);
 Meteor.startup(loadHahsTags);
 
 Meteor.startup(function () {

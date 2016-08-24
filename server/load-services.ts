@@ -1,6 +1,6 @@
 import { Services } from '../collections/services.ts';
 
-export function loadServices() {
+/*export function loadServices() {
   if (Services.find().count() === 0) {
 
     var services = [
@@ -28,4 +28,4 @@ export function loadServices() {
       Services.insert(services[i]);
     }
   }
-}
+}*/
