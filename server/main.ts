@@ -4,6 +4,7 @@ import {Meteor} from 'meteor/meteor';
 import './services.ts';
 import './hashtags.ts';
 import { Accounts } from 'meteor/accounts-base';
+import { Email } from 'meteor/email';
 //import { Roles } from 'meteor/alanning:roles';
 
 
@@ -36,3 +37,21 @@ Meteor.startup(function () {
   }
 
 });
+
+/*Meteor.startup(function () {
+  var smtp = {
+    username: 'feldor92@gmail.com',   // eg: server@gentlenode.com
+    password: 'feldor26967696',   // eg: 3eeP1gtizk5eziohfervU
+    server:   'smtp.gmail.com',  // eg: mail.gandi.net
+    port: 465
+  }
+
+  process.env.MAIL_URL = 'smtp://feldor92@gmail.com:feldor26967696@smtp.gmail.com:465;
+});
+
+Email.send({
+  from: "feldor92@gmail.com",
+  to: "feldor92@gmail.com",
+  subject: "Meteor Can Send Emails via Gmail",
+  text: "Its pretty easy to send emails via gmail."
+});*/

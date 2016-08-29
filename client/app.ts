@@ -4,6 +4,7 @@ import { bootstrap } from 'angular2-meteor-auto-bootstrap';
 import { provideRouter, RouterConfig, ROUTER_DIRECTIVES } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { Signup } from './imports/auth/singup.ts';
+import { Forget } from './imports/auth/forget.ts';
 import { Login } from './imports/auth/login.ts';
 import { ServicesList } from './imports/services-list/services-list.ts';
 import { ServicesForm } from './imports/services-form/services-form.ts';
@@ -44,7 +45,8 @@ const routes: RouterConfig = [
   { path: 'autocomplete',		component: HashTagAutocomplete },
   { path: 'addservice',    component: ServicesForm },
   { path: 'singup',    component: Signup },
-  { path: 'login',    component: Login }
+  { path: 'login',    component: Login },
+  { path: 'forgetpassword',    component: Forget }
   
 ];
 

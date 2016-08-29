@@ -1,0 +1,15 @@
+<div class="forgetContainer">
+	<div class="errorForget">{{error}}</div>
+	<form role="form" [ngFormModel]="forgetForm" #f="ngForm" (submit)="forget($event, email.value)">
+		<div class="forgetHeader">
+			<span>¿Olvidastes la contraseña?</span>
+		</div>
+		<div class="forgetContent">
+			<div class="emailContent">
+				<input type="email" #email class="form-control" id="email" placeholder="Email">
+			</div>
+			<button class="forgetButton">Recuperar</button>
+
+		</div>
+	</form>
+</div>
