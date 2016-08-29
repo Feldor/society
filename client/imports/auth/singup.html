@@ -1,0 +1,25 @@
+<div class="singupContainer">
+	<div class="errorSingup">{{error}}</div>
+	<form role="form" [ngFormModel]="signupForm" #f="ngForm" (submit)="signup($event, username.value, password.value, repeatPassword.value, email.value)">
+		<div class="singupHeader">
+			<span>Forma parte de Society</span>
+		</div>
+		<div class="singupContent">
+			<div class="usernameContent">
+				<label></label>
+				<input type="text" #username class="form-control" id="username" placeholder="Usuario">
+			</div>
+			<div class="emailContent">
+				<input type="email" #email class="form-control" id="email" placeholder="Email">
+			</div>
+			<div class="paswordContent">
+				<input type="password" #password class="form-control" id="password" placeholder="Contraseña">
+			</div>
+			<div class="repeatContent">
+				<input type="password" #repeatPassword class="form-control" id="password" placeholder="Repite la Contraseña">
+			</div>
+			<button class="singupButton">Registrar</button>
+
+		</div>
+	</form>
+</div>
